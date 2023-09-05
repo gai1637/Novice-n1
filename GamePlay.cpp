@@ -11,8 +11,8 @@ GamePlay::GamePlay() {
 	for (int a = 0; a < 10; a++) {
 		enemy[a] = new Enemy;
 	}
-		
-	
+	enemycount = 0;
+	Numflag = true;
 }
 GamePlay::~GamePlay() {
 	delete player;
@@ -31,7 +31,16 @@ void GamePlay::CountDawn() {
 }
 void GamePlay::Update() {
 	CountDawn();
+	if (count > -60) {
+		count--;
+	}
+	if (count = -60) {
+		Numflag = false;
+	}
 	if (count <= 0) {
+		enemy[enemycount]->Run();
+		if (!enemy[enemycount]->runflag) {
 
+		}
 	}
 }

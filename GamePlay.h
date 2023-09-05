@@ -9,8 +9,8 @@ public:
 	int count;
 	int cunterpng;
 	int countNum;
-	int kyakucount;
 	int enemycount;
+	bool Numflag;
 private:
 	Enemy* enemy[10];
 	
