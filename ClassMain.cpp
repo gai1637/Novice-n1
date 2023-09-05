@@ -10,6 +10,7 @@ ClassMain::ClassMain() {
 }
 ClassMain::~ClassMain() {
 	delete game;
+	delete exp;
 }
 void ClassMain::Update(char* keys, char* prekeys) {
 	switch (scene)
