@@ -1,5 +1,5 @@
 #include "Player.h"
-#include"func.h"
+#include"Novice.h"
 Player::Player() {
 	
 }

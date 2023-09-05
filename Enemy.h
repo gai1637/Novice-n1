@@ -1,14 +1,15 @@
 #pragma once
 #include"Vector2.h"
-class Kyaku
+
+class Enemy
 {
 public:
 	Vector2 pos;
-	bool tenbai;
+	int tenbai;
 	int size;
 	int png;
 public:
-	Kyaku(bool a,int b);
+	Enemy();
 	void Run();
 	void Draw();
 };

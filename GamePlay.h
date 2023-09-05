@@ -1,15 +1,24 @@
 #pragma once
 class Player;
-class Game
+class Kayku;
+class Enemy;
+class GamePlay
 {
 public:
-	Player *player;
+	
 	int count;
 	int cunterpng;
 	int countNum;
 	int kyakucount;
+	int enemycount;
+private:
+	Enemy* enemy[10];
+	
+
+	Player* player;
 public:
-	Game();
+	GamePlay();
+	~GamePlay();
 	void Draw();
 	void Update();
 	void CountDawn();

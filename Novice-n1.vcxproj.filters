@@ -41,10 +41,16 @@
     <ClCompile Include="Player.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="GamePlay.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Kyaku.cpp">
+    <ClCompile Include="ClassMain.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Explanation.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,8 +128,9 @@
     </ClInclude>
     <ClInclude Include="func.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Main.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Kyaku.h" />
+    <ClInclude Include="GamePlay.h" />
+    <ClInclude Include="ClassMain.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Explanation.h" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #include <Novice.h>
-#include "Main.h"
+
 
 const char kWindowTitle[] = "学籍番号";
 
