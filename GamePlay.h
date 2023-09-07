@@ -11,6 +11,13 @@ public:
 	int countNum;
 	int enemycount;
 	bool Numflag;
+	bool situmon;
+	int situmonNum = 0;
+	int situmoncount = 0;
+	bool F;
+	int sit;
+	bool ketudan;
+	bool kekka;
 private:
 	Enemy* enemy[10];
 	

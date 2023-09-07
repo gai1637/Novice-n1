@@ -4,8 +4,23 @@
 Enemy::Enemy() {
 	pos = { 1280,0 };
 	tenbai = rand() % 2;
-	size = 1;
-	png = 0;
+	size = 200;
+	png = rand() % 5;
+	switch (png)
+	{
+	case 0:
+		png = Novice::LoadTexture("./Resouse/image/LADY.png");
+		break;
+	case 1:
+		png = Novice::LoadTexture("./Resouse/image/OTAKU.png");
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	}
 	runflag=true;
 	endflag=false;
 }
@@ -19,6 +34,7 @@ void Enemy::Run() {
 }
 void Enemy::Draw() {
 	Q((int)pos.x, (int)pos.y, size, size, 200, 400, png);
+	
 }
 void Enemy::Que(bool flag,int num) {
 	if (!flag) {
@@ -52,5 +68,16 @@ void Enemy::Que(bool flag,int num) {
 			break;
 
 		}
+	}
+}
+void Enemy::Taiten(){	
+	pos.x--;
+}
+void Enemy::TaitenDraw(bool f) {
+	if (f) {
+
+	}
+	else {
+
 	}
 }

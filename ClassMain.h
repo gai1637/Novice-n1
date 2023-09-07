@@ -13,7 +13,7 @@ public:
 	GamePlay* game;
 	Scene scene;
 	Explanation *exp;
-
+	int titlepng;
 public:
 	void Update(char* keys, char* prekeys);
 	void Draw();

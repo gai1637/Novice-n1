@@ -14,6 +14,9 @@ public:
 	Enemy();
 	void Run();
 	void Draw();
-	void Que(bool flag,int num);
+	void Que(bool flag, int num);
+	void Taiten();
+	void TaitenDraw(bool f);
+
 };
 
