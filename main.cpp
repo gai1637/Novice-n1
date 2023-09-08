@@ -1,5 +1,6 @@
 #include <Novice.h>
 #include"ClassMain.h"
+#include"GamePlay.h"
 
 const char kWindowTitle[] = "学籍番号";
 
@@ -13,7 +14,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	char keys[256] = {0};
 	char preKeys[256] = {0};
 
-	ClassMain *classmain = new ClassMain;
+	/*ClassMain *classmain = new ClassMain;*/
+	GamePlay* game = new GamePlay;
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -27,7 +29,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓更新処理ここから
 		///
-		classmain->Update(keys, preKeys);
+		/*classmain->Update(keys, preKeys);*/
+		game->Update();
 		///
 		/// ↑更新処理ここまで
 		///
@@ -35,7 +38,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
-		classmain->Draw();
+		/*classmain->Draw();*/
+		game->Draw();
 		///
 		/// ↑描画処理ここまで
 		///
@@ -48,7 +52,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			break;
 		}
 	}
-	delete classmain;
+	/*delete classmain;*/
+	delete game;
 	// ライブラリの終了
 	Novice::Finalize();
 	return 0;

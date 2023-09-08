@@ -8,16 +8,17 @@ ClassMain::ClassMain() {
 	game = new GamePlay;
 	exp = new Explanation;
 	scene = Title;
+	titlepng = 0;
 }
 ClassMain::~ClassMain() {
 	delete game;
 	delete exp;
 }
-void ClassMain::Update(char* keys, char* prekeys) {
+void ClassMain::Update(char* keys) {
 	switch (scene)
 	{
 	case Title:
-		if (Novice::IsTriggerMouse) {
+		if (Novice::IsTriggerMouse(0)) {
 			scene = Exp;
 		}
 		break;

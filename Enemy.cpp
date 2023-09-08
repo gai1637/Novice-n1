@@ -1,8 +1,9 @@
 #include "Enemy.h"
 #include"Novice.h"
 #include"func.h"
+
 Enemy::Enemy() {
-	pos = { 1280,0 };
+	pos = { 1280,100 };
 	tenbai = rand() % 2;
 	size = 200;
 	png = rand() % 5;
@@ -15,10 +16,13 @@ Enemy::Enemy() {
 		png = Novice::LoadTexture("./Resouse/image/OTAKU.png");
 		break;
 	case 2:
+		png = Novice::LoadTexture("./Resouse/image/a.png");
 		break;
 	case 3:
+		png = Novice::LoadTexture("./Resouse/image/a.png");
 		break;
 	case 4:
+		png = Novice::LoadTexture("./Resouse/image/a.png");
 		break;
 	}
 	runflag=true;
@@ -26,7 +30,7 @@ Enemy::Enemy() {
 }
 void Enemy::Run() {
 	if (runflag) {
-		pos.x--;
+		pos.x-=5;
 	}
 	if (pos.x <= 640 - (float)size / 2) {
 		runflag = false;

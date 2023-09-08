@@ -5,9 +5,7 @@ class Enemy;
 class GamePlay
 {
 public:
-	
 	int count;
-	int cunterpng;
 	int countNum;
 	int enemycount;
 	bool Numflag;
@@ -18,11 +16,12 @@ public:
 	int sit;
 	bool ketudan;
 	bool kekka;
+	
 private:
 	Enemy* enemy[10];
-	
-
 	Player* player;
+	int haikei;
+	int Num[4];
 public:
 	GamePlay();
 	~GamePlay();
