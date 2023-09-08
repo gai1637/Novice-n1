@@ -75,7 +75,7 @@ void Enemy::Que(bool flag,int num) {
 	}
 }
 void Enemy::Taiten(){	
-	pos.x--;
+	pos.x-=5;
 }
 void Enemy::TaitenDraw(bool f) {
 	if (f) {

@@ -43,6 +43,7 @@ void GamePlay::CountDawn() {
 	}
 }
 void GamePlay::Update() {
+	player->Move();
 	CountDawn();
 	if (count > -60&&count<=0) {
 		count--;
@@ -57,7 +58,7 @@ void GamePlay::Update() {
 				situmon = true;
 				F = false;
 			}
-			if (!situmon&&sit<=1) {
+			if (!situmon) {
 				situmoncount++;
 				if (situmoncount >= 120) {
 					situmon = true;
@@ -74,7 +75,7 @@ void GamePlay::Update() {
 							}
 							situmon = false;
 							sit++;
-						}else if (player->posx > 440&& player->posx > 840) {
+						}else if (player->posx > 440&& player->posx < 840) {
 							situmonNum = 1;
 							if (sit == 1) {
 								situmonNum = 4;
@@ -94,32 +95,34 @@ void GamePlay::Update() {
 				}
 				else
 				{
-					if (player->posy > 510 && player->posy < 710) {
-						if (player->posx >= 120
-							&& player->posx <= 520) {
-							kekka = true;
-							ketudan = true;
+					
+						if (player->posy > 510 && player->posy < 710) {
+							if (player->posx >= 120
+								&& player->posx <= 520) {
+								kekka = true;
+								ketudan = true;
+							}
+							if (player->posx >= 760
+								&& player->posx <= 1160) {
+								kekka = false;
+								ketudan = true;
+							}
 						}
-						if (player->posx >= 760
-							&& player->posx <= 1160) {
-							kekka = false;
-							ketudan = true;
-						}
-					}
-					if (ketudan) {
-						enemy[enemycount]->Taiten();
-						if (enemy[enemycount]->pos.x <= -enemy[enemycount]->size) {
-							F = true;
-							situmon = false;
-							sit = 0;
-							ketudan = false;
-							enemycount++;
-						}
-					}
+						
+					
 				}
 				
 			}
-			
+			if (ketudan) {
+				enemy[enemycount]->Taiten();
+				if (enemy[enemycount]->pos.x <= -enemy[enemycount]->size) {
+					F = true;
+					situmon = false;
+					sit = 0;
+					ketudan = false;
+					enemycount++;
+				}
+			}
 			
 		}
 	}
@@ -129,12 +132,19 @@ void GamePlay::Draw() {
 	
 	/*Q(0, 0, 1280, 720, 1280, 720, haikei);*/
 	enemy[enemycount]->Draw();
-	if (situmon) {
+	if (situmon&&sit==0) {
 		Novice::DrawBox(20, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 		Novice::DrawBox(440, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 		Novice::DrawBox(860, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 
 	}
+	if (situmon&&sit==1) {
+		Novice::DrawBox(20, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
+		Novice::DrawBox(440, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
+		Novice::DrawBox(860, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
+
+	}
+
 	if (sit >= 2) {
 		Novice::DrawBox(120, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 		Novice::DrawBox(760, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
@@ -148,5 +158,5 @@ void GamePlay::Draw() {
 	if (Numflag&& count < 0) {
 
 	}
-	Novice::ScreenPrintf(0, 0, "%d", countNum);
+	Novice::ScreenPrintf(0, 0, "%d", player->posy);
 }
