@@ -26,6 +26,7 @@ GamePlay::GamePlay() {
 	Num[3] = Novice::LoadTexture("./Resouse/image/3.png");
 	
 	haikei = Novice::LoadTexture("./Resouse/image/haikei.png");
+	back = Novice::LoadTexture("./Resouse/image/haikeiback.png");
 }
 GamePlay::~GamePlay() {
 	delete player;
@@ -129,9 +130,15 @@ void GamePlay::Update() {
 	
 }
 void GamePlay::Draw() {
-	
-	/*Q(0, 0, 1280, 720, 1280, 720, haikei);*/
-	enemy[enemycount]->Draw();
+	Q(0, 0, 1280, 720, 1280, 720, back);
+	QE(0, 0, 1280, 720,0, 1280, 720, haikei);
+	if (!ketudan) {
+		enemy[enemycount]->Draw();
+	}
+	else
+	{
+		enemy[enemycount]->TaitenDraw(kekka);
+	}
 	if (situmon&&sit==0) {
 		Novice::DrawBox(20, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 		Novice::DrawBox(440, 510, 400, 200, 0.f, RED, kFillModeWireFrame);

@@ -16,13 +16,13 @@ Enemy::Enemy() {
 		png = Novice::LoadTexture("./Resouse/image/OTAKU.png");
 		break;
 	case 2:
-		png = Novice::LoadTexture("./Resouse/image/a.png");
+		png = Novice::LoadTexture("./Resouse/image/MAN.png");
 		break;
 	case 3:
-		png = Novice::LoadTexture("./Resouse/image/a.png");
+		png = Novice::LoadTexture("./Resouse/image/BOY.png");
 		break;
 	case 4:
-		png = Novice::LoadTexture("./Resouse/image/a.png");
+		png = Novice::LoadTexture("./Resouse/image/SHADY.png");
 		break;
 	}
 	runflag=true;
@@ -37,7 +37,14 @@ void Enemy::Run() {
 	}
 }
 void Enemy::Draw() {
-	Q((int)pos.x, (int)pos.y, size, size, 200, 400, png);
+	if (runflag) {
+		QE((int)pos.x, (int)pos.y, size,400, 200,200, 400, png);
+	}
+	else
+	{
+		Q((int)pos.x, (int)pos.y, size, 400, 200, 400, png);
+	}
+	
 	
 }
 void Enemy::Que(bool flag,int num) {
@@ -79,9 +86,9 @@ void Enemy::Taiten(){
 }
 void Enemy::TaitenDraw(bool f) {
 	if (f) {
-
+		QE((int)pos.x, (int)pos.y, size, 400, 200, 200, 400, png);
 	}
 	else {
-
+		QE((int)pos.x, (int)pos.y, size, 400, 400, 200, 400, png);
 	}
 }

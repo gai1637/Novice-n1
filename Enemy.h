@@ -1,5 +1,6 @@
 #pragma once
 #include"Vector2.h"
+#include"Novice.h"
 
 class Enemy
 {
@@ -10,6 +11,7 @@ public:
 	int png;
 	bool runflag;
 	bool endflag;
+	int hentou;
 public:
 	Enemy();
 	void Run();

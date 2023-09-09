@@ -22,6 +22,7 @@ private:
 	Player* player;
 	int haikei;
 	int Num[4];
+	int back;
 public:
 	GamePlay();
 	~GamePlay();
