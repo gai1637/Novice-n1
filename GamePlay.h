@@ -16,6 +16,7 @@ public:
 	int sit;
 	bool ketudan;
 	bool kekka;
+	int situmonF[6];
 	
 private:
 	Enemy* enemy[10];
@@ -23,11 +24,15 @@ private:
 	int haikei;
 	int Num[4];
 	int back;
+	int countMP3;
+	int BGM;
+	bool BGMflag;
 public:
 	GamePlay();
 	~GamePlay();
 	void Draw();
 	void Update();
 	void CountDawn();
+	int SitumonFriwake(int *a,int b);
 };
 

@@ -11,7 +11,10 @@ public:
 	int png;
 	bool runflag;
 	bool endflag;
-	int hentou;
+	int hentou[9];
+	int hukidasi;
+	int aisatu;
+	bool aisatuflag;
 public:
 	Enemy();
 	void Run();

@@ -27,6 +27,12 @@ GamePlay::GamePlay() {
 	
 	haikei = Novice::LoadTexture("./Resouse/image/haikei.png");
 	back = Novice::LoadTexture("./Resouse/image/haikeiback.png");
+	countMP3 = Novice::LoadAudio("./resouse/Audio/countDown.mp3");
+	for (int i = 0; i < 6; i++) {
+		situmonF[i] = 0;
+	}
+	BGM = Novice::LoadAudio("./resouse/Audio/Sparkle!!.wav");
+	BGMflag = true;
 }
 GamePlay::~GamePlay() {
 	delete player;
@@ -37,13 +43,18 @@ GamePlay::~GamePlay() {
 }
 void GamePlay::CountDawn() {
 	if (count > 0) {
+		if (count % 60 == 0) {
+			Novice::PlayAudio(countMP3, 0, 1);
+		}
 		count--;
 		if (count % 60 == 0) {
 			countNum--;
+			
 		}
 	}
 }
 void GamePlay::Update() {
+	
 	player->Move();
 	CountDawn();
 	if (count > -60&&count<=0) {
@@ -53,66 +64,80 @@ void GamePlay::Update() {
 		Numflag = false;
 	}
 	if (count <= 0) {
+		if (BGMflag) {
+			BGMflag = false;
+			Novice::PlayAudio(BGM, 1, 1);
+		}
 		enemy[enemycount]->Run();
 		if (!enemy[enemycount]->runflag) {
 			if (F) {
 				situmon = true;
 				F = false;
+				for (int x = 0; x <= 6; x++) {
+					SitumonFriwake(situmonF, x);
+				}
 			}
 			if (!situmon) {
 				situmoncount++;
 				if (situmoncount >= 120) {
 					situmon = true;
+					situmoncount = 0;
+					
 				}
 			}
-			if (Novice::IsTriggerMouse(0)&&situmon) {
-				if (sit < 2) {
-					if (player->posy > 510 && player->posy < 710) {
-						if (player->posx > 20
-							&& player->posx < 420) {
-							situmonNum = 0;
-							if (sit == 1) {
-								situmonNum = 3;
+			if (Novice::IsTriggerMouse(0)) {
+				if (situmon) {
+					if (sit < 2) {
+						if (player->posy > 510 && player->posy < 710) {
+							if (player->posx > 20
+								&& player->posx < 420) {
+								situmonNum = situmonF[0];
+								if (sit == 1) {
+									situmonNum = situmonF[3];
+								}
+								situmon = false;
+								sit++;
+								enemy[enemycount]->aisatuflag = false;
 							}
-							situmon = false;
-							sit++;
-						}else if (player->posx > 440&& player->posx < 840) {
-							situmonNum = 1;
-							if (sit == 1) {
-								situmonNum = 4;
+							else if (player->posx > 440 && player->posx < 840) {
+								situmonNum = situmonF[1];
+								if (sit == 1) {
+									situmonNum = situmonF[4];
+								}
+								situmon = false;
+								sit++;
+								enemy[enemycount]->aisatuflag = false;
 							}
-							situmon = false;
-							sit++;
-						}else if (player->posx > 860&& player->posx < 1260) {
-							situmonNum = 2;
-							if (sit == 1) {
-								situmonNum = 5;
+							else if (player->posx > 860 && player->posx < 1260) {
+								situmonNum = situmonF[2];
+								if (sit == 1) {
+									situmonNum = situmonF[5];
+								}
+								situmon = false;
+								sit++;
+								enemy[enemycount]->aisatuflag = false;
 							}
-							situmon = false;
-							sit++;
+
 						}
+					}else
+					{
+						
+							if (player->posy > 510 && player->posy < 710) {
+								if (player->posx >= 120
+									&& player->posx <= 520) {
+									kekka = true;
+									ketudan = true;
+								}
+								if (player->posx >= 760
+									&& player->posx <= 1160) {
+									kekka = false;
+									ketudan = true;
+								}
+							}
+
 						
 					}
 				}
-				else
-				{
-					
-						if (player->posy > 510 && player->posy < 710) {
-							if (player->posx >= 120
-								&& player->posx <= 520) {
-								kekka = true;
-								ketudan = true;
-							}
-							if (player->posx >= 760
-								&& player->posx <= 1160) {
-								kekka = false;
-								ketudan = true;
-							}
-						}
-						
-					
-				}
-				
 			}
 			if (ketudan) {
 				enemy[enemycount]->Taiten();
@@ -152,7 +177,7 @@ void GamePlay::Draw() {
 
 	}
 
-	if (sit >= 2) {
+	if (sit >= 2&&situmon) {
 		Novice::DrawBox(120, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 		Novice::DrawBox(760, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
 
@@ -165,5 +190,16 @@ void GamePlay::Draw() {
 	if (Numflag&& count < 0) {
 
 	}
-	Novice::ScreenPrintf(0, 0, "%d", player->posy);
+	
+}
+int GamePlay::SitumonFriwake(int *a,int b) {
+	a[b] = rand() % 6;
+	if (b >= 1) {
+		for (int i = b - 1; i > 0; --i) {
+			if (a[b] == a[i]) {
+				GamePlay::SitumonFriwake(a, b);
+			}
+		}
+	}
+	return a[b];
 }
