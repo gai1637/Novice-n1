@@ -27,6 +27,7 @@ private:
 	int countMP3;
 	int BGM;
 	bool BGMflag;
+	int situmonM[6];
 public:
 	GamePlay();
 	~GamePlay();

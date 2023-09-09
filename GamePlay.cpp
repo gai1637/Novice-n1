@@ -33,6 +33,13 @@ GamePlay::GamePlay() {
 	}
 	BGM = Novice::LoadAudio("./resouse/Audio/Sparkle!!.wav");
 	BGMflag = true;
+	situmonM[0]= Novice::LoadTexture("./Resouse/image/moji/situmon1.png");
+	situmonM[1]= Novice::LoadTexture("./Resouse/image/moji/situmon2.png");
+	situmonM[2]= Novice::LoadTexture("./Resouse/image/moji/situmon3.png");
+	situmonM[3]= Novice::LoadTexture("./Resouse/image/moji/situmon4.png");
+	situmonM[4]= Novice::LoadTexture("./Resouse/image/moji/situmon5.png");
+	situmonM[5]= Novice::LoadTexture("./Resouse/image/moji/situmon6.png");
+
 }
 GamePlay::~GamePlay() {
 	delete player;
@@ -73,7 +80,8 @@ void GamePlay::Update() {
 			if (F) {
 				situmon = true;
 				F = false;
-				for (int x = 0; x <= 6; x++) {
+				
+				for (int x = 0; x < 6; x++) {
 					SitumonFriwake(situmonF, x);
 				}
 			}
@@ -165,16 +173,17 @@ void GamePlay::Draw() {
 		enemy[enemycount]->TaitenDraw(kekka);
 	}
 	if (situmon&&sit==0) {
-		Novice::DrawBox(20, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
-		Novice::DrawBox(440, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
-		Novice::DrawBox(860, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
-
+		for (int y = 0; y < 3; y++) {
+			
+			Q(20 + 420 * y, 510, 400, 200, 400, 200, situmonM[situmonF[y] ]);
+		}
 	}
 	if (situmon&&sit==1) {
-		Novice::DrawBox(20, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
-		Novice::DrawBox(440, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
-		Novice::DrawBox(860, 510, 400, 200, 0.f, BLACK, kFillModeWireFrame);
+		
+		for (int y = 0; y < 3; y++) {
 
+			Q(20 + 420 * y, 510, 400, 200, 400, 200, situmonM[situmonF[y+3]]);
+		}
 	}
 
 	if (sit >= 2&&situmon) {
@@ -195,8 +204,8 @@ void GamePlay::Draw() {
 int GamePlay::SitumonFriwake(int *a,int b) {
 	a[b] = rand() % 6;
 	if (b >= 1) {
-		for (int i = b - 1; i > 0; --i) {
-			if (a[b] == a[i]) {
+		for (int i = b-1; i >= 0; i--) {
+			if (a[b] == a[i]&&b!=i) {
 				GamePlay::SitumonFriwake(a, b);
 			}
 		}

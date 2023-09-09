@@ -7,6 +7,7 @@ Enemy::Enemy() {
 	tenbai = rand() % 2;
 	size = 200;
 	png = rand() % 5;
+	aisatu = 0;
 	switch (png)
 	{
 	case 0:
