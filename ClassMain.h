@@ -14,6 +14,7 @@ public:
 	Scene scene;
 	Explanation *exp;
 	int titlepng;
+	short skipcount;
 public:
 	void Update(char* keys);
 	void Draw();

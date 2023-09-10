@@ -28,6 +28,7 @@ private:
 	int BGM;
 	bool BGMflag;
 	int situmonM[6];
+	int kekkapng[2];
 public:
 	GamePlay();
 	~GamePlay();

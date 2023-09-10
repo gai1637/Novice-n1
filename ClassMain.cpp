@@ -7,8 +7,9 @@ ClassMain::ClassMain() {
 	srand((unsigned int)time(nullptr));
 	game = new GamePlay;
 	exp = new Explanation;
-	scene = Title;
+	scene = Exp;
 	titlepng = 0;
+	skipcount = 120;
 }
 ClassMain::~ClassMain() {
 	delete game;
@@ -24,6 +25,14 @@ void ClassMain::Update(char* keys) {
 		break;
 	case Exp:
 		if (keys[DIK_S]) {
+			skipcount--;
+			if (skipcount <= 0) {
+				skipcount = 120;
+				scene = Game;
+			}
+		}
+		exp->Update();
+		if (exp->count >= 5) {
 			scene = Game;
 		}
 		break;
@@ -46,6 +55,7 @@ void ClassMain::Draw() {
 	case Title:
 		break;
 	case Exp:
+		exp->Draw();
 		break;
 	case Game:
 		game->Draw();

@@ -39,6 +39,8 @@ GamePlay::GamePlay() {
 	situmonM[3]= Novice::LoadTexture("./Resouse/image/moji/situmon4.png");
 	situmonM[4]= Novice::LoadTexture("./Resouse/image/moji/situmon5.png");
 	situmonM[5]= Novice::LoadTexture("./Resouse/image/moji/situmon6.png");
+	kekkapng[0]= Novice::LoadTexture("./Resouse/image/moji/uru.png");
+	kekkapng[1]=Novice::LoadTexture("./Resouse/image/moji/uranai.png");
 
 }
 GamePlay::~GamePlay() {
@@ -187,8 +189,9 @@ void GamePlay::Draw() {
 	}
 
 	if (sit >= 2&&situmon) {
-		Novice::DrawBox(120, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
-		Novice::DrawBox(760, 510, 400, 200, 0.f, RED, kFillModeWireFrame);
+		
+		Q(120, 510, 400, 200, 400, 200, kekkapng[0]);
+		Q(760, 510, 400, 200, 400, 200, kekkapng[1]);
 
 	}
 	if (!F) {
