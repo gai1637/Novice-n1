@@ -34,6 +34,7 @@ Enemy::Enemy() {
 	runflag=true;
 	endflag=false;
 	aisatuflag = false;
+	seitou = true;
 	hukidasi=Novice::LoadTexture("./Resouse/image/Lines.png");
 	hentou[0] = Novice::LoadTexture("./Resouse/image/moji/nanjamon.png");
 	hentou[1] = Novice::LoadTexture("./Resouse/image/moji/hikarinezumi.png");

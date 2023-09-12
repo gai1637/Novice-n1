@@ -1,6 +1,7 @@
 #pragma once
 class GamePlay;
 class Explanation;
+class Ending;
 typedef enum Scene {
 	Title,
 	Exp,
@@ -13,8 +14,10 @@ public:
 	GamePlay* game;
 	Scene scene;
 	Explanation *exp;
+	Ending *end;
 	int titlepng;
 	short skipcount;
+	
 public:
 	void Update(char* keys);
 	void Draw();

@@ -54,3 +54,9 @@ void Explanation::Update() {
 		timer = 300;
 	}
 }
+void Explanation::Reset() {
+	openflag = true;
+	closeflag = true;
+	timer = 120;
+	count = 0;
+}

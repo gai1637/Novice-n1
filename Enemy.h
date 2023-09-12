@@ -15,6 +15,7 @@ public:
 	int hukidasi;
 	int aisatu;
 	bool aisatuflag;
+	bool seitou;
 public:
 	Enemy();
 	void Run();

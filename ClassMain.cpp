@@ -3,17 +3,20 @@
 #include"Novice.h"
 #include"Explanation.h"
 #include<time.h>
+#include"Ending.h"
 ClassMain::ClassMain() {
 	srand((unsigned int)time(nullptr));
 	game = new GamePlay;
 	exp = new Explanation;
-	scene = Exp;
-	titlepng = 0;
+	end = new Ending;
+	scene = Game;
 	skipcount = 120;
+	titlepng = Novice::LoadTexture("./Resouse/image/title.png");
 }
 ClassMain::~ClassMain() {
 	delete game;
 	delete exp;
+	delete end;
 }
 void ClassMain::Update(char* keys) {
 	switch (scene)
@@ -21,6 +24,8 @@ void ClassMain::Update(char* keys) {
 	case Title:
 		if (Novice::IsTriggerMouse(0)) {
 			scene = Exp;
+			game->Reset();
+			exp->Reset();
 		}
 		break;
 	case Exp:
@@ -38,21 +43,25 @@ void ClassMain::Update(char* keys) {
 		break;
 	case Game:
 		game->Update();
-		if (game->enemycount>=10) {
+		/*if (game->enemycount>=10) {
 			scene = End;
-		}
+			Novice::StopAudio(game->BGM);
+		}*/
 		break;
 	case End:
-		
+		end->Update();
+		if (keys[DIK_RETURN]) {
+			scene = Title;
+		}
 		break;
-	default:
-		break;
+	
 	}
 }
 void ClassMain::Draw() {
 	switch (scene)
 	{
 	case Title:
+		Novice::DrawQuad(0, 0, 1280, 0, 0, 720, 1280, 720, 0, 0, 1280, 720,titlepng, WHITE);
 		break;
 	case Exp:
 		exp->Draw();
@@ -61,7 +70,7 @@ void ClassMain::Draw() {
 		game->Draw();
 		break;
 	case End:
-
+		end->Draw();
 		break;
 	default:
 		break;

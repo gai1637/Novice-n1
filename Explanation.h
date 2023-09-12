@@ -16,5 +16,6 @@ public:
 	Explanation();
 	void Update();
 	void Draw();
+	void Reset();
 };
 
