@@ -101,11 +101,7 @@ void GamePlay::Update() {
 		Numflag = false;
 	}
 	if (count <= 0&&enemycount<10) {
-		if (BGMflag) {
-			BGMflag = false;
-			Novice::PlayAudio(BGM, 1, 1);
-			
-		}
+		
 		enemy[enemycount]->Run();
 		if (!enemy[enemycount]->runflag) {
 			if (F) {

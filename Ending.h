@@ -7,8 +7,9 @@ public:
 	void Update();
 	void Draw();
 	void Reset();
-private:
 	int BGM;
+private:
+	
 	int png[3];
 	int countEnd ;
 	int countNum ;

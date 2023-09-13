@@ -14,6 +14,9 @@ ClassMain::ClassMain() {
 	titlepng = Novice::LoadTexture("./Resouse/image/title.png");
 	titleBGM = Novice::LoadAudio("./Resouse/Audio/title.mp3");
 	BGMflag = false;
+	BGMHandle = -1;
+	GamePLayHandle = -1;
+	EndHandle = -1;
 }
 ClassMain::~ClassMain() {
 	delete game;
@@ -24,18 +27,18 @@ void ClassMain::Update(char* keys) {
 	switch (scene)
 	{
 	case Title:
+		if (!Novice::IsPlayingAudio(BGMHandle))
+			BGMHandle = Novice::PlayAudio(titleBGM, 1, 1);
+
 		if (Novice::IsTriggerMouse(0)) {
-			/*Novice::StopAudio(titleBGM);*/
+			Novice::StopAudio(BGMHandle);
 			scene = Exp;
 			game->Reset();
 			exp->Reset();
 			
 		}
-		/*if (!BGMflag) {
-			BGMflag = true;
-			Novice::PlayAudio(titleBGM, 1, 1);
-			
-		}*/
+		
+		
 		break;
 	case Exp:
 		if (keys[DIK_S]) {
@@ -52,24 +55,27 @@ void ClassMain::Update(char* keys) {
 		break;
 	case Game:
 		game->Update();
+		if (game->count <= 0 && !Novice::IsPlayingAudio(GamePLayHandle)) {
+			GamePLayHandle = Novice::PlayAudio(game->BGM, 1, 1);
+		}
 		if (!game->pasentRandamflag && game->pasentDrawflag) {
 			if (keys[DIK_RETURN]) {
 				scene = End;
-				Novice::StopAudio(game->BGM);
+				Novice::StopAudio(GamePLayHandle);
 			}
 		}
-		/*if (game->enemycount>=10) {
-			scene = End;
-			Novice::StopAudio(game->BGM);
-		}*/
+		
 		break;
 	case End:
 		end->Update();
+		if (!Novice::IsPlayingAudio(EndHandle)) {
+			EndHandle = Novice::PlayAudio(end->BGM, 1, 1);
+		}
 		if (keys[DIK_RETURN]) {
 			scene = Title;
 			BGMflag = false;
 			end->Reset();
-
+			Novice::StopAudio(EndHandle);
 		}
 		
 		break;

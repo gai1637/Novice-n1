@@ -19,6 +19,9 @@ public:
 	short skipcount;
 	int titleBGM;
 	bool BGMflag;
+	int BGMHandle;
+	int GamePLayHandle;
+	int EndHandle;
 public:
 	void Update(char* keys);
 	void Draw();

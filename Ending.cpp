@@ -15,10 +15,7 @@ Ending::Ending() {
 	flag = false;
 }
 void Ending::Update() {
-	if (!flag) {
-		Novice::PlayAudio(BGM, 1, 1);
-		flag = true;
-	}
+	
 	countEnd--;
 	if (countEnd <= 0) {
 		countNum++;
