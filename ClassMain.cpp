@@ -50,7 +50,7 @@ void ClassMain::Update(char* keys) {
 		}
 		else
 		{
-			skipcount=120;
+			skipcount;
 		}
 
 		exp->Update();
@@ -73,10 +73,10 @@ void ClassMain::Update(char* keys) {
 		break;
 	case End:
 		end->Update();
-		if (keys[DIK_RETURN]) {
+		if (Novice::IsPlayingAudio(EndHandle)) {
 			EndHandle = Novice::PlayAudio(end->BGM, 1, 1);
 		}
-		if (Novice::IsTriggerMouse(0)) {
+		if (keys[DIK_RETURN]) {
 			scene = Title;
 			BGMflag = false;
 			end->Reset();
