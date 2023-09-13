@@ -8,9 +8,12 @@ public:
 	int timer;
 private:
 	int haikei;
-	int moji[4];
+	int moji[5];
 	int open;
 	int close;
+	int heya;
+	int memo;
+	int kami;
 	void LODE();
 public:
 	Explanation();

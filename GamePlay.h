@@ -51,6 +51,7 @@ private:
 	int kekkapng[2];
 	int hitopng;
 	int papng;
+
 public:
 	GamePlay();
 	~GamePlay();

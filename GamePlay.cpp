@@ -15,7 +15,7 @@ GamePlay::GamePlay() {
 	for (int a = 0; a < 10; a++) {
 		enemy[a] = new Enemy;
 	}
-	enemycount = 9;
+	enemycount = 0;
 	Numflag = true;
 	situmon = false;
 	situmoncount = 0;
@@ -322,7 +322,7 @@ void GamePlay::Draw() {
 			{
 				Q(300, 80, tenbaisize, tenbaisize * 2, 200, 400, Num[tenbaicount]);
 			}
-			Q(426, 80, 200, 200, 200, 200, papng);
+			Q(426, 80, 200, 200, 200, 200, hitopng);
 		}
 		if (playerDrawflag) {
 			if (playerRandamflag) {
@@ -331,7 +331,7 @@ void GamePlay::Draw() {
 			else {
 				Q(725, 80, playersize, playersize * 2, 200, 400, Num[playercoount]);
 			}
-			Q(852, 80, 200, 200, 200, 200, papng);
+			Q(852, 80, 200, 200, 200, 200, hitopng);
 		}
 		if (pasentDrawflag) {
 			if (pasentRandamflag) {
@@ -375,7 +375,7 @@ void GamePlay::Reset() {
 	count = 180;
 	countNum = 3;
 	for (int a = 0; a < 10; a++) {
-		enemy[a]->pos = { 0,0 };
+		enemy[a]->pos = { 1280,100 };
 		
 	}
 	enemycount = 0;

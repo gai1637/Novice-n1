@@ -17,7 +17,8 @@ public:
 	Ending *end;
 	int titlepng;
 	short skipcount;
-	
+	int titleBGM;
+	bool BGMflag;
 public:
 	void Update(char* keys);
 	void Draw();

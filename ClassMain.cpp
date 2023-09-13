@@ -9,9 +9,11 @@ ClassMain::ClassMain() {
 	game = new GamePlay;
 	exp = new Explanation;
 	end = new Ending;
-	scene = Game;
+	scene = Title;
 	skipcount = 120;
 	titlepng = Novice::LoadTexture("./Resouse/image/title.png");
+	titleBGM = Novice::LoadAudio("./Resouse/Audio/title.mp3");
+	BGMflag = false;
 }
 ClassMain::~ClassMain() {
 	delete game;
@@ -23,10 +25,17 @@ void ClassMain::Update(char* keys) {
 	{
 	case Title:
 		if (Novice::IsTriggerMouse(0)) {
+			/*Novice::StopAudio(titleBGM);*/
 			scene = Exp;
 			game->Reset();
 			exp->Reset();
+			
 		}
+		/*if (!BGMflag) {
+			BGMflag = true;
+			Novice::PlayAudio(titleBGM, 1, 1);
+			
+		}*/
 		break;
 	case Exp:
 		if (keys[DIK_S]) {
@@ -37,12 +46,18 @@ void ClassMain::Update(char* keys) {
 			}
 		}
 		exp->Update();
-		if (exp->count >= 5) {
+		if (exp->count >= 7) {
 			scene = Game;
 		}
 		break;
 	case Game:
 		game->Update();
+		if (!game->pasentRandamflag && game->pasentDrawflag) {
+			if (keys[DIK_RETURN]) {
+				scene = End;
+				Novice::StopAudio(game->BGM);
+			}
+		}
 		/*if (game->enemycount>=10) {
 			scene = End;
 			Novice::StopAudio(game->BGM);
@@ -52,7 +67,11 @@ void ClassMain::Update(char* keys) {
 		end->Update();
 		if (keys[DIK_RETURN]) {
 			scene = Title;
+			BGMflag = false;
+			end->Reset();
+
 		}
+		
 		break;
 	
 	}
