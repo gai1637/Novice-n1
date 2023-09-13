@@ -59,7 +59,7 @@ void ClassMain::Update(char* keys) {
 			GamePLayHandle = Novice::PlayAudio(game->BGM, 1, 1);
 		}
 		if (!game->pasentRandamflag && game->pasentDrawflag) {
-			if (keys[DIK_RETURN]) {
+			if (Novice::IsTriggerMouse(0)) {
 				scene = End;
 				Novice::StopAudio(GamePLayHandle);
 			}
@@ -71,7 +71,7 @@ void ClassMain::Update(char* keys) {
 		if (!Novice::IsPlayingAudio(EndHandle)) {
 			EndHandle = Novice::PlayAudio(end->BGM, 1, 1);
 		}
-		if (keys[DIK_RETURN]) {
+		if (Novice::IsTriggerMouse(0)) {
 			scene = Title;
 			BGMflag = false;
 			end->Reset();
