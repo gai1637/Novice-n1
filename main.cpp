@@ -3,7 +3,7 @@
 #include"GamePlay.h"
 #include"Explanation.h"
 
-const char kWindowTitle[] = "学籍番号";
+const char kWindowTitle[] = "2063_見抜け、VS転売ヤー";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {

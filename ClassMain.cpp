@@ -48,6 +48,11 @@ void ClassMain::Update(char* keys) {
 				scene = Game;
 			}
 		}
+		else
+		{
+			skipcount=120;
+		}
+
 		exp->Update();
 		if (exp->count >= 7) {
 			scene = Game;
@@ -68,7 +73,7 @@ void ClassMain::Update(char* keys) {
 		break;
 	case End:
 		end->Update();
-		if (!Novice::IsPlayingAudio(EndHandle)) {
+		if (keys[DIK_RETURN]) {
 			EndHandle = Novice::PlayAudio(end->BGM, 1, 1);
 		}
 		if (Novice::IsTriggerMouse(0)) {

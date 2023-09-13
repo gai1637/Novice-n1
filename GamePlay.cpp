@@ -372,7 +372,7 @@ void GamePlay::Reset() {
 	countNum = 3;
 	for (int a = 0; a < 10; a++) {
 		enemy[a]->pos = { 1280,100 };
-		
+		enemy[a]->runflag = true;
 	}
 	enemycount = 0;
 	Numflag = true;
